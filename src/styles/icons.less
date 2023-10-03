@@ -1,0 +1,16 @@
+@icon-names:
+  arrow-right;
+
+.icon {
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  width: 26px;
+  height: 26px;
+  background-color: var(--color-dark);
+
+  each(@icon-names, {
+    &.icon-@{value} {
+      mask-image: url('../assets/icons/@{value}.svg');
+    }
+  });
+}

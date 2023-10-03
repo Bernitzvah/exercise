@@ -31,7 +31,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "src/styles/colors.less",
+              "src/styles/icons.less",
+              "src/styles/buttons.less"
             ],
             "scripts": []
           },
@@ -99,7 +102,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "src/styles/colors.less",
+              "src/styles/icons.less",
+              "src/styles/buttons.less"
             ],
             "scripts": []
           }
