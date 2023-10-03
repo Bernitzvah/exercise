@@ -24,7 +24,6 @@ export class AccessComponent {
   }
 
   public login(): void {
-    console.log('hswhdkjs')
     this.router.navigate(['/main']);
   }
 }

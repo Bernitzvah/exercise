@@ -1,0 +1,1 @@
+export * from './general-ranking/general-ranking.component';
