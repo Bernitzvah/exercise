@@ -1,0 +1,14 @@
+<div class="container">
+    <img class="logo" src="../assets/icons/logo.png" />
+    <h2>Accesso utente</h2>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <input class="field field-input-data" placeholder="Email" type="email" formControlName="email" />
+      <input class="field field-input-data" placeholder="Password" type="password" formControlName="password" />
+      <button class="button button-small filled-blue" type="submit" [disabled]="loginForm.invalid">
+        <div class="icon icon-arrow-right"></div>
+        <span>enter</span>
+      </button>
+    </form>
+    <a class="action-secondary">forgotPassword</a>
+  </div>
+  
