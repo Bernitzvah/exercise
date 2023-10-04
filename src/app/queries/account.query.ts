@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Query } from '@datorama/akita';
+import { Query, QueryEntity } from '@datorama/akita';
 import { Observable } from 'rxjs';
-import { AccountStore } from '../stores';
+import { AccountState, AccountStore } from '../stores';
 import { AccountModel } from '../models';
 
 @Injectable({ providedIn: 'root' })
-export class AccountQuery extends Query<AccountModel> {
+export class AccountQuery extends QueryEntity<AccountState> {
   public user$: Observable<AccountModel>;
 
   constructor(

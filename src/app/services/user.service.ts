@@ -11,7 +11,9 @@ export class UsersService {
         private accountStore: AccountStore) { }
 
     public getUsersList(): Observable<any | null> {
-        return this.http.get<any>('https://jsonplaceholder.typicode.com/posts').pipe(
-            tap((response) => {this.accountStore.setAccount(response)}))
+        return this.http.get<any>('https://jsonplaceholder.typicode.com/users').pipe(
+            tap((response) => {
+                this.accountStore.update(response);
+            }))
     }
 }

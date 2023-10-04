@@ -1,26 +1,22 @@
 import { Injectable } from "@angular/core";
-import { Store, StoreConfig } from "@datorama/akita";
+import { EntityState, EntityStore, Store, StoreConfig } from "@datorama/akita";
 import { AccountModel } from "../models";
 
-@Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'account', resettable: true })
-export class AccountStore extends Store<AccountModel> {
-  constructor() {
-    const defaults: AccountModel = {
-        id: null,
-        username: null,
-        name: null,
-        email: null,
-        phone: null,
-        website: null,
-        address: null,
-        company: null
-    };
-    super(defaults);
-  }
+export interface AccountState extends EntityState<AccountModel> {
+  id: null;
+  username: null;
+  name: null;
+  email: null;
+  phone: null;
+  website: null;
+  address: null;
+  company: null;
+}
 
-  public setAccount(account: AccountModel): void {
-    console.log(account);
-    this.update(account);
+@Injectable({ providedIn: 'root' })
+@StoreConfig({ name: 'accounts', resettable: true })
+export class AccountStore extends EntityStore<AccountState> {
+  constructor() {
+    super();
   }
 }
