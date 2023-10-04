@@ -4,7 +4,7 @@ import { MainComponent } from './pages/main/main.component';
 import { AccessComponent } from './pages';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'main', component: MainComponent},
   { path: 'login', component: AccessComponent},
   { path: '**', redirectTo: '' }
