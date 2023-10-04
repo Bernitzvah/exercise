@@ -37,7 +37,8 @@
               "src/styles.less",
               "src/styles/colors.less",
               "src/styles/icons.less",
-              "src/styles/buttons.less"
+              "src/styles/buttons.less",
+              "src/styles/text.less"
             ],
             "scripts": []
           },
@@ -108,7 +109,8 @@
               "src/styles.less",
               "src/styles/colors.less",
               "src/styles/icons.less",
-              "src/styles/buttons.less"
+              "src/styles/buttons.less",
+              "src/styles/text.less"
             ],
             "scripts": []
           }

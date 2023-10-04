@@ -6,13 +6,13 @@ import { AccountModel } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class AccountQuery extends QueryEntity<AccountState> {
-  public user$: Observable<AccountModel[]>;
+  public users$: Observable<AccountModel[]>;
 
   constructor(
     protected accountStore: AccountStore
   ) {
     super(accountStore);
-    this.user$ = this.select(state => state.users);
+    this.users$ = this.select(state => state.users);
   }
 
   public getAccounts(): AccountModel[] {

@@ -10,7 +10,7 @@ export class PostService {
         private http: HttpClient,
         private postStore: PostStore) { }
 
-    public getUsersList(): Observable<any | null> {
+    public getPostList(): Observable<any | undefined> {
         return this.http.get<any>('https://jsonplaceholder.typicode.com/posts').pipe(
             tap((response) => {
                 this.postStore.update({ posts: response });
