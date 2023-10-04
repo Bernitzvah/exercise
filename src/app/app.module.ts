@@ -12,13 +12,15 @@ import {GeneralRankingComponent} from './components';
 
 import { AccessComponent, MainComponent } from './pages';
 import { RfxLoggerInterceptor } from 'rfx-logger';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccessComponent,
     MainComponent,
-    GeneralRankingComponent
+    GeneralRankingComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Query, QueryEntity } from '@datorama/akita';
+import { QueryEntity } from '@datorama/akita';
 import { Observable } from 'rxjs';
 import { AccountState, AccountStore } from '../stores';
 import { AccountModel } from '../models';

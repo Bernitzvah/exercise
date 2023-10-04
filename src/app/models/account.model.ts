@@ -1,12 +1,12 @@
 export interface AccountModel {
-    id: number | null;
-    username: string | null;
-    name: string | null;
-    email: string | null;
-    phone: string | null;
-    website: string | null;
-    address: Address | null;
-    company: Company | null;
+    id: number;
+    username: string;
+    name: string;
+    email: string;
+    phone: string;
+    website: string;
+    address: Address;
+    company: Company;
 }
 export interface Address {
     street: string
