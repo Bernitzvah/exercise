@@ -15,7 +15,7 @@ export class AccountQuery extends QueryEntity<AccountState> {
     this.user$ = this.select(state => state.users);
   }
 
-  public getAccounts(): AccountModel[]{
+  public getAccounts(): AccountModel[] {
     return this.getValue().users;
   }
 

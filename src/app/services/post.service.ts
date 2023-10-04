@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AccountStore } from '../stores';
+import { PostStore } from '../stores';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class PostService {
     constructor(
         private http: HttpClient,
-        private accountStore: AccountStore) { }
+        private postStore: PostStore) { }
 
     public getUsersList(): Observable<any | null> {
-        return this.http.get<any>('https://jsonplaceholder.typicode.com/users').pipe(
+        return this.http.get<any>('https://jsonplaceholder.typicode.com/posts').pipe(
             tap((response) => {
-                this.accountStore.update({ users: response });
+                this.postStore.update({ posts: response });
             }))
     }
 }

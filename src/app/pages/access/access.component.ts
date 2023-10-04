@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/services';
+import { UserService } from 'src/app/services';
 
 @Component({
   selector: 'app-access',
@@ -16,7 +16,7 @@ export class AccessComponent {
 
   constructor(
     private router: Router,
-    private userService: UsersService
+    private userService: UserService
     ) {
     this.isLoading = false;
     this.loginForm = new FormGroup({
