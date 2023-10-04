@@ -3,14 +3,7 @@ import { EntityState, EntityStore, Store, StoreConfig } from "@datorama/akita";
 import { AccountModel } from "../models";
 
 export interface AccountState extends EntityState<AccountModel> {
-  id: null;
-  username: null;
-  name: null;
-  email: null;
-  phone: null;
-  website: null;
-  address: null;
-  company: null;
+  users: AccountModel[];
 }
 
 @Injectable({ providedIn: 'root' })

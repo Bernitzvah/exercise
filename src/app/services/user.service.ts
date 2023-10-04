@@ -13,7 +13,7 @@ export class UsersService {
     public getUsersList(): Observable<any | null> {
         return this.http.get<any>('https://jsonplaceholder.typicode.com/users').pipe(
             tap((response) => {
-                this.accountStore.update(response);
+                this.accountStore.update({ users: response });
             }))
     }
 }

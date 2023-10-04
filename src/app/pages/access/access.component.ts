@@ -27,7 +27,9 @@ export class AccessComponent {
   }
 
   public login(): void {
-    this.userService.getUsersList().subscribe();
-    //this.router.navigate(['/main']);
+    this.userService.getUsersList().subscribe(response => {
+      this.router.navigate(['/main']);
+    });
+    
   }
 }
