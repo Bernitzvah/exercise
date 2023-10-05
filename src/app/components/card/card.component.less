@@ -1,11 +1,35 @@
-.card {
+.card-container {
     display: flex;
-    background-color: var(--grey-one);
-    padding: 15px;
+    flex-direction: column;
+    max-width: 450px;
+    max-height: 250px;
+    padding: 23px;
+    margin: 10px 0px 15px 0;
     border-radius: 30px;
-    margin: 15px 0px 15px 0;
+    background-color: var(--grey-four);
 
-    .post {
-        margin-left: 20px;
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+
+
+        .container-name {
+            .label {
+                margin: 0 0 0 3px;
+            }
+        }
+    }
+
+    .card-content {
+        margin-top: 7px;
+        margin-left: 3px;
+        
+        .last-post {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }

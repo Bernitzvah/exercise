@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnimationDirective } from './directives/animation.directive';
 
 import {GeneralRankingComponent} from './components';
 
@@ -20,7 +22,8 @@ import { CardComponent } from './components/card/card.component';
     AccessComponent,
     MainComponent,
     GeneralRankingComponent,
-    CardComponent
+    CardComponent,
+    AnimationDirective
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { CardComponent } from './components/card/card.component';
     FormsModule,
     ReactiveFormsModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
-    AkitaNgRouterStoreModule
+    AkitaNgRouterStoreModule,
+    BrowserAnimationsModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

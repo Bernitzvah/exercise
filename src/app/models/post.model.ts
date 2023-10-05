@@ -1,5 +1,5 @@
 export interface PostModel {
-    userId: number | null;
+    userId: number;
     id: string | null;
     title: string | null;
     body: string | null;

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as clone from 'clone';
-import { TimeInterval } from 'rxjs';
+import { Subscription, TimeInterval } from 'rxjs';
 import { AccountModel, PostModel } from 'src/app/models';
 import { AccountQuery } from 'src/app/queries';
 import { PostQuery } from 'src/app/queries/post.query';
@@ -18,6 +18,9 @@ export class MainComponent implements OnInit, OnDestroy {
   public users: AccountModel[] | undefined;
   public usersPosts: PostModel[] | undefined;
 
+  private postSubscription: Subscription | undefined;
+  private userSubscription: Subscription | undefined;
+
   private interval: any;
 
   constructor(
@@ -31,8 +34,6 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('utenti: ', !this.postQuery.getPosts()?.length);
-    console.log('utenti: ', this.postQuery.getPosts()?.length);
     this.users = this.accountQuery.getValue().users;
     if (!this.postQuery.getPosts()?.length || this.postQuery.getPosts()?.length <= 0) {
       this.postService.getPostList().subscribe(res => {
@@ -41,14 +42,23 @@ export class MainComponent implements OnInit, OnDestroy {
     } else {
       this.usersPosts = this.postQuery.getPosts();
     }
-    // this.interval = setInterval(() => {
-    //   this.addPost();
-    //   console.log('add')
-    // }, 100);
+    this.interval = setInterval(() => {
+      this.addPost();
+      console.log('add')
+    }, 100);
+    this.postSubscription = this.postQuery.posts$.subscribe((value: PostModel[]) => {
+      this.usersPosts = value;
+    });
+
+    this.userSubscription = this.accountQuery.users$.subscribe((value: AccountModel[]) => {
+      this.users = value;
+    });
   }
 
   ngOnDestroy(): void {
     clearInterval(this.interval);
+    this.userSubscription?.unsubscribe();
+    this.postSubscription?.unsubscribe();
   }
 
   public Logout(): void {
@@ -59,8 +69,9 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public addPost(): void {
     const random = this.getRandomUserId();
+    const body = this.usersPosts ? this.usersPosts[random].body : 'www';
 
-    var post: PostModel = { userId: random, body: "", id: "1", title: "" };
+    var post: PostModel = { userId: random, body: (body + ''+ body + ''+ body + ''+ body), id: "1", title: ""};
     var temp = clone(this.usersPosts);
     temp?.push(post);
     this.usersPosts = temp;
@@ -74,5 +85,15 @@ export class MainComponent implements OnInit, OnDestroy {
       random = 1;
     }
     return random;
+  }
+
+  public countUserPosts(userId: number): number {
+    let res = 0;
+    this.usersPosts?.forEach((value) => {
+      if (value.userId === userId) {
+        res++;
+      }
+    });
+    return res;
   }
 }
