@@ -1,10 +1,10 @@
 .card-container {
     display: flex;
     flex-direction: column;
-    max-width: 450px;
-    max-height: 250px;
+    width: 380px;
+    height: 150px;
     padding: 23px;
-    margin: 10px 0px 15px 0;
+    margin: 10px 0px 30px 0;
     border-radius: 30px;
     background-color: var(--grey-four);
 
@@ -23,7 +23,7 @@
     .card-content {
         margin-top: 7px;
         margin-left: 3px;
-        
+
         .last-post {
             display: -webkit-box;
             -webkit-line-clamp: 4;
@@ -32,4 +32,27 @@
             text-overflow: ellipsis;
         }
     }
+}
+
+.blink {
+    animation: 1s 3 blinker;
+    animation-timing-function: ease-in, linear, ease-out;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.first {
+    background-color: var(--color-blue);
+}
+
+.second {
+    background-color: var(--color-yellow);
+}
+
+.third {
+    background-color: var(--color-violet);
 }

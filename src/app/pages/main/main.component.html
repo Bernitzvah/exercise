@@ -2,8 +2,10 @@
     <button class="button button-small filled-red" (click)="Logout()">
         <span>Logout</span>
     </button>
-    <button class="button button-small filled-red add" (click)="addPost()">
-        <span>Aggiungi post</span>
+    <button class="button button-small filled-blue add" (click)="addPost()">
+        <span>Aggiungi nuovo post</span>
     </button>
-    <app-general-ranking [users]="users" [usersPost]="usersPosts"></app-general-ranking>
+    <div class="ranking-container">
+        <app-general-ranking [users]="users" [usersPost]="usersPosts"></app-general-ranking>
+    </div>
 </div>

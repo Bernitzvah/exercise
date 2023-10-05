@@ -30,8 +30,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private postStore: PostStore,
     private postQuery: PostQuery,
     private router: Router
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.users = this.accountQuery.getValue().users;
@@ -42,10 +41,12 @@ export class MainComponent implements OnInit, OnDestroy {
     } else {
       this.usersPosts = this.postQuery.getPosts();
     }
+
     this.interval = setInterval(() => {
       this.addPost();
       console.log('add')
-    }, 100);
+    }, 1000);
+
     this.postSubscription = this.postQuery.posts$.subscribe((value: PostModel[]) => {
       this.usersPosts = value;
     });
@@ -69,9 +70,9 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public addPost(): void {
     const random = this.getRandomUserId();
-    const body = this.usersPosts ? this.usersPosts[random].body : 'www';
+    const body = this.usersPosts ? this.usersPosts[random].body : '';
 
-    var post: PostModel = { userId: random, body: (body + ''+ body + ''+ body + ''+ body), id: "1", title: ""};
+    var post: PostModel = { userId: random, body: (body), id: "1", title: "" };
     var temp = clone(this.usersPosts);
     temp?.push(post);
     this.usersPosts = temp;
