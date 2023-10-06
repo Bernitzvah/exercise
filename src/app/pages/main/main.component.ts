@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as clone from 'clone';
 import { Subscription } from 'rxjs';
-import { AccountModel, PostModel } from 'src/app/models';
+import { AccountModel, NotificationModel, PostModel } from 'src/app/models';
 import { AccountQuery } from 'src/app/queries';
 import { PostQuery } from 'src/app/queries/post.query';
 import { PostService } from 'src/app/services/post.service';
@@ -18,11 +18,13 @@ export class MainComponent implements OnInit, OnDestroy {
   public users: AccountModel[] | undefined;
   public usersPosts: PostModel[] | undefined;
   public isSnackbarVisible: boolean;
+  public notify: NotificationModel | undefined;
 
   private postSubscription: Subscription | undefined;
   private userSubscription: Subscription | undefined;
 
   private interval: any;
+
 
   constructor(
     private accountStore: AccountStore,
@@ -101,10 +103,9 @@ export class MainComponent implements OnInit, OnDestroy {
     return res;
   }
 
-  public showSnackbar(): void {
+  public showSnackbar(notify: any): void {
     this.isSnackbarVisible = true;
-    setTimeout(() => {
-      this.isSnackbarVisible = false;
-    }, 4000000);
+    this.notify = { text: notify.text, color: notify.color };
+
   }
 }

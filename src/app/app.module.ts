@@ -15,6 +15,9 @@ import {GeneralRankingComponent} from './components';
 import { AccessComponent, MainComponent } from './pages';
 import { RfxLoggerInterceptor } from 'rfx-logger';
 import { CardComponent } from './components/card/card.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackbarComponent } from './components/snackbar/snackbar.component'; 
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { CardComponent } from './components/card/card.component';
     MainComponent,
     GeneralRankingComponent,
     CardComponent,
-    AnimationDirective
+    AnimationDirective,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { CardComponent } from './components/card/card.component';
     ReactiveFormsModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

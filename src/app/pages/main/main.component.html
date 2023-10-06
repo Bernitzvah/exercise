@@ -1,5 +1,3 @@
-
-<app-snackbar [text]="'ciaoooooooo'"></app-snackbar>
 <div class="container">
     <button class="button button-small filled-red" (click)="Logout()">
         <span>Logout</span>
@@ -9,6 +7,7 @@
     </button>
     <div class="ranking-container">
         <app-general-ranking [users]="users" [usersPost]="usersPosts"
-            (showFirstSnakbar)="showSnackbar()"></app-general-ranking>
+            (showSnackbar)="showSnackbar($event)"></app-general-ranking>
     </div>
 </div>
+<app-snackbar *ngIf="isSnackbarVisible" [notification]="notify"></app-snackbar>

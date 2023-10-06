@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NotificationModel } from 'src/app/models';
 
 @Component({
   selector: 'app-snackbar',
@@ -8,9 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SnackbarComponent implements OnInit {
 
   @Input()
-  text: string;
+  notification: NotificationModel | undefined;
 
-  constructor() {this.text = '';}
+  constructor() {}
 
   ngOnInit(): void {
   }

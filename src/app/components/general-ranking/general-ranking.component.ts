@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AccountModel, PostModel } from 'src/app/models';
+import { AccountModel, NotificationModel, PostModel } from 'src/app/models';
 
 @Component({
   selector: 'app-general-ranking',
@@ -13,15 +13,15 @@ export class GeneralRankingComponent {
   usersPost: PostModel[] | undefined;
 
   @Output()
-  showFirstSnakbar: EventEmitter<boolean>;
+  showSnackbar: EventEmitter<NotificationModel>;
 
   constructor() {
-    this.showFirstSnakbar = new EventEmitter<boolean>();
+    this.showSnackbar = new EventEmitter<NotificationModel>();
   }
 
 
-  public showFirst(event: boolean): void {
-    this.showFirstSnakbar.emit(event);
+  public showFirst(event: NotificationModel): void {
+    this.showSnackbar.emit(event);
   }
 
 }
