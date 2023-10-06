@@ -17,7 +17,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public users: AccountModel[] | undefined;
   public usersPosts: PostModel[] | undefined;
-  public isSnackbarVisible: boolean;
   public notify: NotificationModel | undefined;
 
   private postSubscription: Subscription | undefined;
@@ -33,9 +32,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private postStore: PostStore,
     private postQuery: PostQuery,
     private router: Router
-  ) {
-    this.isSnackbarVisible = false;
-  }
+  ) {  }
 
   ngOnInit(): void {
     this.users = this.accountQuery.getValue().users;
@@ -50,7 +47,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.interval = setInterval(() => {
       this.addPost();
       console.log('add')
-    }, 1000);
+    }, 2000);
 
     this.postSubscription = this.postQuery.posts$.subscribe((value: PostModel[]) => {
       this.usersPosts = value;
@@ -104,8 +101,6 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public showSnackbar(notify: any): void {
-    this.isSnackbarVisible = true;
-    this.notify = { text: notify.text, color: notify.color };
-
+    this.notify = { subject: notify.subject, text: notify.text, color: notify.color };
   }
 }

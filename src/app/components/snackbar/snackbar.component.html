@@ -1,1 +1,4 @@
-<p>{{ notification?.text }}</p>
+<div class="container">
+    <p [ngStyle]="{'background-color': item?.color}" [@simpleFadeAnimation]="'in'"
+        *ngFor="let item of notificationList"><span>{{item.subject}}</span>{{ item.text }}</p>
+</div>

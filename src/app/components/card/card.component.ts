@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AnimationDirective } from 'src/app/directives/animation.directive';
 import { AccountModel, NotificationModel, PostModel } from 'src/app/models';
@@ -9,7 +9,7 @@ import { PostQuery } from 'src/app/queries';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.less']
 })
-export class CardComponent implements OnInit, OnDestroy {
+export class CardComponent implements OnInit, OnDestroy, OnChanges {
   @Input()
   users: AccountModel[] | undefined;
   @Input()
@@ -34,32 +34,52 @@ export class CardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.postSubscription = this.postQuery.posts$.subscribe((value: PostModel[]) => {
-      if(this.users){
-        this.users = this.users.map(x => ({ item: x, value: this.countUserPosts(x.id) })).sort((a, b) => a.value > b.value ? -1 : 1).map(x => x.item)
-        const notify: NotificationModel = { text: '', color: '' };
-        let canGo = false;
-        if(this.firstPosition != this.users[0]) {
-          this.firstPosition = this.users[0];
-          notify.text = this.users[0].name + ' é in testa!'
-          canGo = true;
-        }
-        if(this.secondPosition != this.users[1]) {
-          this.secondPosition = this.users[1];
-          notify.text = this.users[1].name + ' é in seconda posizione!'
-          canGo = true;
-        }
-        if(this.thirdPosition != this.users[2]) {
-          this.thirdPosition = this.users[2];
-          notify.text = this.users[2].name + ' é in arrivato terzo!'
-          canGo = true;
-        }
-        if(canGo)
+      
+    })
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (this.users) {
+      this.users = this.users.map(x => ({ item: x, value: this.countUserPosts(x.id) })).sort((a, b) => a.value > b.value ? -1 : 1).map(x => x.item)
+      const notify: NotificationModel = { subject: '', text: '', color: '' };
+      if (this.firstPosition != this.users[0]) {
+        this.firstPosition = this.users[0];
+        notify.subject = this.users[0].name;
+        notify.text = ' é in testa!'
+        notify.color = 'var(--color-blue)'
         this.showSnackbar.emit(notify);
+        if (this.items) {
+          this.items.forEach(x => x.animateGo())
+        }
+        return;
       }
-      if (this.items){
+      if (this.secondPosition != this.users[1]) {
+        this.secondPosition = this.users[1];
+        notify.subject = this.users[1].name;
+        notify.text = ' é in seconda posizione!'
+        notify.color = 'var(--color-yellow)'
+        this.showSnackbar.emit(notify);
+        if (this.items) {
+          this.items.forEach(x => x.animateGo())
+        }
+        return;
+      }
+      if (this.thirdPosition != this.users[2]) {
+        this.thirdPosition = this.users[2];
+        notify.subject = this.users[2].name;
+        notify.text = ' é in arrivato terzo!'
+        notify.color = 'var(--color-violet)'
+        this.showSnackbar.emit(notify);
+        if (this.items) {
+          this.items.forEach(x => x.animateGo())
+        }
+        return;
+      }
+      
+      if (this.items) {
         this.items.forEach(x => x.animateGo())
       }
-    })
+    }
   }
 
   ngOnDestroy(): void {

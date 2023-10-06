@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: column;
 
+    .snackbar {
+        position: fixed;
+        bottom: 0;
+        right: 40px;
+    }
+
     .button {
         max-width: 130px;
     }
@@ -12,14 +18,13 @@
 
     .ranking-container {
         position: relative;
-        height: 730px;
+        height: 760px;
+        height: calc(100vh - 115px);
         overflow-x: hidden;
         overflow-y: hidden;
         overflow-y: scroll;
     }
-
-    ::-webkit-scrollbar {
-        width: 0;
-        background: transparent;
-    }
+    .ranking-container::-webkit-scrollbar{
+        display: none;
+      }
 }
