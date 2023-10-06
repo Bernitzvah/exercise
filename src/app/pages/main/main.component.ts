@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as clone from 'clone';
-import { Subscription, TimeInterval } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AccountModel, PostModel } from 'src/app/models';
 import { AccountQuery } from 'src/app/queries';
 import { PostQuery } from 'src/app/queries/post.query';
@@ -17,6 +17,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public users: AccountModel[] | undefined;
   public usersPosts: PostModel[] | undefined;
+  public isSnackbarVisible: boolean;
 
   private postSubscription: Subscription | undefined;
   private userSubscription: Subscription | undefined;
@@ -30,7 +31,9 @@ export class MainComponent implements OnInit, OnDestroy {
     private postStore: PostStore,
     private postQuery: PostQuery,
     private router: Router
-  ) { }
+  ) {
+    this.isSnackbarVisible = false;
+  }
 
   ngOnInit(): void {
     this.users = this.accountQuery.getValue().users;
@@ -96,5 +99,12 @@ export class MainComponent implements OnInit, OnDestroy {
       }
     });
     return res;
+  }
+
+  public showSnackbar(): void {
+    this.isSnackbarVisible = true;
+    setTimeout(() => {
+      this.isSnackbarVisible = false;
+    }, 4000000);
   }
 }

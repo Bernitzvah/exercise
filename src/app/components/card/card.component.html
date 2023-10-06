@@ -1,16 +1,22 @@
 <ng-container *ngFor="let item of users let i = index">
-    <div [ngClass]="{ 'blink': i == 0, 'first': i == 0, 'second': i == 1, 'third': i == 2 }" class="card-container" *animate>
-        <div class="card-header">
-            <div class="container-name">
-                <div class="text-dark">{{ item.name }}</div>
-                <div class="text-dark-sm label">{{ item.company.bs }}</div>
-            </div>
-            <div class="text-dark post">post totali: {{ countUserPosts(item.id) }}</div>
-        </div>
 
-        <div class="card-content">
-            <div class="text-dark-sm last-post">
-                {{ getLastPost(i+1) }}
+    <div class="2222" *animate 
+        class="card-container" >
+        <div class="card shake" [ngClass]="{ 'shake': i==0, 'blink': i == 0, 'first': i == 0, 'second': i == 1, 'third': i == 2 }">
+            <div class="1111">
+                <div class="card-header">
+                    <div class="container-name">
+                        <div class="text-dark">{{ item.name }}</div>
+                        <div class="text-dark-sm label">{{ item.company.bs }}</div>
+                    </div>
+                    <div class="text-dark post">post totali: {{ countUserPosts(item.id) }}</div>
+                </div>
+
+                <div class="card-content">
+                    <div class="text-dark-sm last-post">
+                        {{ getLastPost(i+1) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AnimationDirective } from 'src/app/directives/animation.directive';
 import { AccountModel, PostModel } from 'src/app/models';
-import { AccountQuery, PostQuery } from 'src/app/queries';
+import { PostQuery } from 'src/app/queries';
 
 @Component({
   selector: 'app-card',
@@ -14,33 +14,34 @@ export class CardComponent implements OnInit, OnDestroy {
   users: AccountModel[] | undefined;
   @Input()
   usersPost: PostModel[] | undefined;
+  @Output()
+  showFirstSnakbar: EventEmitter<boolean>;
 
   @ViewChildren(AnimationDirective) items: QueryList<AnimationDirective> | undefined;
   public itemAdd: any;
 
   private postSubscription: Subscription | undefined;
   private userSubscription: Subscription | undefined;
+  private firstPosition: AccountModel | undefined;
 
   constructor(
     private postQuery: PostQuery,
-    private userQuery: AccountQuery
-  ) { }
+  ) {
+    this.showFirstSnakbar = new EventEmitter<boolean>();
+  }
 
   ngOnInit(): void {
     this.postSubscription = this.postQuery.posts$.subscribe((value: PostModel[]) => {
-      if(this.users)
-      this.users = this.users.map(x => ({ item: x, value: this.countUserPosts(x.id) })).sort((a, b) => a.value > b.value ? -1 : 1).map(x => x.item)
-    
+      if(this.users){
+        this.users = this.users.map(x => ({ item: x, value: this.countUserPosts(x.id) })).sort((a, b) => a.value > b.value ? -1 : 1).map(x => x.item)
+        if(this.firstPosition != this.users[0]) {
+          this.firstPosition = this.users[0];
+          this.showFirstSnakbar.emit(true);
+        }
+      }
       if (this.items){
         this.items.forEach(x => x.animateGo())
       }
-
-      if (this.users)
-      for (let i=0;i<this.users.length;i++){
-        console.log('xxxxxc', this.users[i].name, this.countUserPosts(this.users[i].id));
-      }
-      console.log('------------------------------------------------------------------', );
-
     })
   }
 
@@ -65,5 +66,4 @@ export class CardComponent implements OnInit, OnDestroy {
     const result = (s && this.usersPost?.length) ? this.usersPost[s].body : '';
     return result;
   }
-
 }

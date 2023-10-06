@@ -1,3 +1,5 @@
+
+<app-snackbar [text]="'ciaoooooooo'"></app-snackbar>
 <div class="container">
     <button class="button button-small filled-red" (click)="Logout()">
         <span>Logout</span>
@@ -6,6 +8,7 @@
         <span>Aggiungi nuovo post</span>
     </button>
     <div class="ranking-container">
-        <app-general-ranking [users]="users" [usersPost]="usersPosts"></app-general-ranking>
+        <app-general-ranking [users]="users" [usersPost]="usersPosts"
+            (showFirstSnakbar)="showSnackbar()"></app-general-ranking>
     </div>
 </div>
