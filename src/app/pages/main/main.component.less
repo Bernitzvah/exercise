@@ -5,7 +5,9 @@
     .snackbar {
         position: fixed;
         bottom: 0;
-        right: 40px;
+        z-index: 10000;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 
     .button {
@@ -24,7 +26,8 @@
         overflow-y: hidden;
         overflow-y: scroll;
     }
-    .ranking-container::-webkit-scrollbar{
+
+    .ranking-container::-webkit-scrollbar {
         display: none;
-      }
+    }
 }

@@ -1,9 +1,9 @@
 <ng-container *ngFor="let item of users let i = index">
 
-    <div class="2222" *animate 
+    <div *animate 
         class="card-container" >
         <div class="card shake" [ngClass]="{ 'shake': i==0, 'blink': i == 0, 'first': i == 0, 'second': i == 1, 'third': i == 2 }">
-            <div class="1111">
+            <div>
                 <div class="card-header">
                     <div class="container-name">
                         <div class="text-dark">{{ item.name }}</div>
