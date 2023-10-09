@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as clone from 'clone';
 import { Subscription } from 'rxjs';
@@ -14,6 +15,7 @@ import { AccountStore, PostStore } from 'src/app/stores';
   styleUrls: ['./main.component.less']
 })
 export class MainComponent implements OnInit, OnDestroy {
+  public postForm: FormGroup;
 
   public users: AccountModel[] | undefined;
   public usersPosts: PostModel[] | undefined;
@@ -38,6 +40,10 @@ export class MainComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.isNewPostVisible = false;
+    this.postForm = new FormGroup({
+      title: new FormControl('', [Validators.required]),
+      body: new FormControl('', [Validators.required])
+    });
   }
 
   ngOnInit(): void {
@@ -52,7 +58,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
     //mock add users
     this.interval = setInterval(() => {
-      this.addPost();
+      this.addAutoPost();
     }, 2000);
 
     this.postSubscription = this.postQuery.posts$.subscribe((value: PostModel[]) => {
@@ -70,6 +76,10 @@ export class MainComponent implements OnInit, OnDestroy {
     this.postSubscription?.unsubscribe();
   }
 
+  public login(): void {
+    this.router.navigate(['/main']);
+  }
+
   public Logout(): void {
     this.accountStore.reset();
     this.postStore.reset();
@@ -78,6 +88,17 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public addPost(): void {
     this.isNewPostVisible = true;
+    const random = this.getRandomUserId();
+    const body = this.usersPosts ? this.usersPosts[random].body : '';
+
+    var post: PostModel = { userId: random, body: (body), id: "1", title: "" };
+    var temp = clone(this.usersPosts);
+    temp?.push(post);
+    this.usersPosts = temp;
+    this.postStore.update({ posts: temp });
+  }
+
+  private addAutoPost(): void {
     const random = this.getRandomUserId();
     const body = this.usersPosts ? this.usersPosts[random].body : '';
 

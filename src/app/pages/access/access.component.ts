@@ -32,7 +32,7 @@ export class AccessComponent implements OnInit {
   ) {
     this.isLoading = false;
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     });
     this.users = this.accountQuery.getValue().users;
@@ -48,6 +48,7 @@ export class AccessComponent implements OnInit {
       this.usersPosts = this.postQuery.getPosts();
     }
     this.userService.getUsersList().subscribe((response: AccountModel[]) => {
+      this.users = response;
       if (this.rankedUsers) {
         this.rankedUsers.users = response;
         this.postService.getPostList().subscribe((response: PostModel[]) => {

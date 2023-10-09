@@ -11,16 +11,27 @@
         </div>
 
         <div class="text-dark-sm info">
-            <div>Bentornato <span class="text-dark-m">{{ userInfo?.name }}!</span></div>
-            <div>posizione: <span class="text-dark-m">{{ userInfo?.position }}</span></div>
-            <div>post totali: <span class="text-dark-m">{{ userInfo?.postNumber }}</span></div>
-            <div>Post per prossima posizione: <span class="text-dark-m">{{ userInfo?.preDetach }}</span></div>
-            <div>Post per posizione precedente: <span class="text-dark-m">{{ userInfo?.postDetach }}</span></div>
+            <div>CIAO <span class="text-dark-m">{{ userInfo?.name }}</span></div>
+            <div>N°: <span class="text-dark-m">{{ userInfo?.position }}</span></div>
+            <div>POST: <span class="text-dark-m">{{ userInfo?.postNumber }}</span></div>
+            <div>POST PER PROSSIMA POSIZIONE: <span class="text-dark-m">{{ userInfo?.preDetach }}</span></div>
+            <div>POST PER POSIZIONE PRECEDENTE: <span class="text-dark-m">{{ userInfo?.postDetach }}</span></div>
         </div>
     </div>
-    <div *ngIf="isNewPostVisible" class="new-post">
-        <form class="form">
-            <input *ngIf="isNewPostVisible" class="field field-input-data" placeholder="scrivi per postare"/>
+    <div *ngIf="isNewPostVisible" class="new-post mover">
+        <form class="form" [formGroup]="postForm" (ngSubmit)="login()">
+            <input *ngIf="isNewPostVisible" class="field field-input-data" placeholder="Inserisci titolo"
+                formControlName="title" />
+            <input *ngIf="isNewPostVisible" class="field field-input-data" placeholder="Scrivi per postare"
+                formControlName="body" />
+            <div class="button-container">
+                <button class="button button-small filled-blue add" type="submit" [disabled]="postForm.invalid">
+                    <span>Aggiungi</span>
+                </button>
+                <button class="button button-small outline" (click)="isNewPostVisible = false">
+                    <span>Chiudi</span>
+                </button>
+            </div>
         </form>
     </div>
     <div class="ranking-container">

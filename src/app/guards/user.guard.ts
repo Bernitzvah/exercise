@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
+import { CanActivate } from "@angular/router";
 import { AccountQuery } from "../queries";
 
 @Injectable({
@@ -7,7 +7,6 @@ import { AccountQuery } from "../queries";
 })
 export class AccessGuard implements CanActivate {
   constructor(
-    private router: Router,
     private accountQuery: AccountQuery
   ) {}
 

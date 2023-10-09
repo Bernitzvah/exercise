@@ -46,8 +46,8 @@ export class CardComponent implements OnInit, OnDestroy, OnChanges {
 
         const position = this.users.findIndex(x => x.id == this.randomId) + 1;
         const name = this.users.find(x => x.id == this.randomId)?.name;
-        const pre = this.countUserPosts(this.users[position-2].id);
-        const post = this.countUserPosts(this.users[position].id);
+        const pre = (position > 1) ? this.countUserPosts(this.users[position-2].id) : 0;
+        const post = (position < 10) ? this.countUserPosts(this.users[position].id) : 0;
         const model: UserInfoModel = { id: this.randomId, name: name ? name : '', position: position, postNumber: totalPost, preDetach: pre, postDetach: post };
         this.userInfo.emit(model);
 

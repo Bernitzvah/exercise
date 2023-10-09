@@ -13,7 +13,7 @@
 
     .header {
         display: flex;
-        margin: 30px 0 0 30px;
+        margin: 30px 0px 30px 30px;
 
         .actions {
             .button {
@@ -28,12 +28,36 @@
         .info {
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             margin-left: 30px;
         }
     }
 
     .new-post {
-        margin: 30px 0 30px 0;
+        margin: 0px 30px 30px 30px;
+
+        .form {
+            align-items: stretch;
+
+            .button-container {
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+
+        &.mover {
+            animation: mover 1s forwards;
+
+            @keyframes mover {
+                from {
+                  opacity: 0;
+                }
+                to {
+                  opacity: 1;
+                }
+              }
+        }
+
     }
 
     .ranking-container {

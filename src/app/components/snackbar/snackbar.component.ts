@@ -36,7 +36,7 @@ export class SnackbarComponent implements OnChanges {
     this.notificationList = [];
   }
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['notification'].currentValue.text.length > 0)
+    if (changes['notification'].currentValue && changes['notification'].currentValue.text.length > 0)
       this.notificationList.push(changes['notification'].currentValue);
     if (this.notificationList.length > 0) {
       setTimeout(() => {
