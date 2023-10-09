@@ -76,8 +76,15 @@ export class MainComponent implements OnInit, OnDestroy {
     this.postSubscription?.unsubscribe();
   }
 
-  public login(): void {
-    this.router.navigate(['/main']);
+  public addNewPost(): void {
+    const random = this.getRandomUserId();
+    const body = this.usersPosts ? this.usersPosts[random].body : '';
+
+    var post: PostModel = { userId: random, body: (body), id: "1", title: "" };
+    var temp = clone(this.usersPosts);
+    temp?.push(post);
+    this.usersPosts = temp;
+    this.postStore.update({ posts: temp });
   }
 
   public Logout(): void {
@@ -88,14 +95,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public addPost(): void {
     this.isNewPostVisible = true;
-    const random = this.getRandomUserId();
-    const body = this.usersPosts ? this.usersPosts[random].body : '';
-
-    var post: PostModel = { userId: random, body: (body), id: "1", title: "" };
-    var temp = clone(this.usersPosts);
-    temp?.push(post);
-    this.usersPosts = temp;
-    this.postStore.update({ posts: temp });
   }
 
   private addAutoPost(): void {

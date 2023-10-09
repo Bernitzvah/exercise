@@ -19,7 +19,7 @@
         </div>
     </div>
     <div *ngIf="isNewPostVisible" class="new-post mover">
-        <form class="form" [formGroup]="postForm" (ngSubmit)="login()">
+        <form class="form" [formGroup]="postForm" (ngSubmit)="addNewPost()">
             <input *ngIf="isNewPostVisible" class="field field-input-data" placeholder="Inserisci titolo"
                 formControlName="title" />
             <input *ngIf="isNewPostVisible" class="field field-input-data" placeholder="Scrivi per postare"
