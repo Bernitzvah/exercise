@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AccountModel, NotificationModel, PostModel } from 'src/app/models';
+import { AccountModel, NotificationModel, PostModel, UserInfoModel } from 'src/app/models';
 
 @Component({
   selector: 'app-general-ranking',
@@ -11,12 +11,21 @@ export class GeneralRankingComponent {
   users: AccountModel[] | undefined;
   @Input()
   usersPost: PostModel[] | undefined;
+  @Input()
+  userInfo: UserInfoModel | undefined;
 
   @Output()
   showSnackbar: EventEmitter<NotificationModel>;
+  @Output()
+  userInfoState: EventEmitter<UserInfoModel>;
 
   constructor() {
     this.showSnackbar = new EventEmitter<NotificationModel>();
+    this.userInfoState = new EventEmitter<UserInfoModel>();
+  }
+
+  public setUserInfo(event: UserInfoModel): void {
+    this.userInfoState.emit(event);
   }
 
 

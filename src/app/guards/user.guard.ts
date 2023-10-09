@@ -13,7 +13,6 @@ export class AccessGuard implements CanActivate {
 
   canActivate(): boolean  {
       const isAuthenticated = this.accountQuery.getAccounts().length > 0;
-      console.log('lunghezza', this.accountQuery.getAccounts().length);
 
       return isAuthenticated;
   }

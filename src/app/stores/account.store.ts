@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
-import { EntityState, EntityStore, Store, StoreConfig } from "@datorama/akita";
+import { EntityState, EntityStore, StoreConfig } from "@datorama/akita";
 import { AccountModel } from "../models";
 
 export interface AccountState extends EntityState<AccountModel> {
   users: AccountModel[];
+  fakeId: number;
 }
 
 @Injectable({ providedIn: 'root' })

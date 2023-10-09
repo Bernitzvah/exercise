@@ -14,6 +14,8 @@ export class UserService {
         return this.http.get<any>('https://jsonplaceholder.typicode.com/users').pipe(
             tap((response) => {
                 this.accountStore.update({ users: response });
+                const randomId = Math.floor(Math.random() * 10) + 1;
+                this.accountStore.update({fakeId: randomId});
             }))
     }
 }

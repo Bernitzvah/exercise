@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as clone from 'clone';
 import { Subscription } from 'rxjs';
-import { AccountModel, NotificationModel, PostModel } from 'src/app/models';
+import { AccountModel, NotificationModel, PostModel, UserInfoModel } from 'src/app/models';
 import { AccountQuery } from 'src/app/queries';
 import { PostQuery } from 'src/app/queries/post.query';
 import { PostService } from 'src/app/services/post.service';
@@ -18,6 +18,8 @@ export class MainComponent implements OnInit, OnDestroy {
   public users: AccountModel[] | undefined;
   public usersPosts: PostModel[] | undefined;
   public notify: NotificationModel | undefined;
+  @Input()
+  public userInfo: UserInfoModel | undefined;
 
   private postSubscription: Subscription | undefined;
   private userSubscription: Subscription | undefined;
@@ -32,7 +34,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private postStore: PostStore,
     private postQuery: PostQuery,
     private router: Router
-  ) {  }
+  ) { }
 
   ngOnInit(): void {
     this.users = this.accountQuery.getValue().users;
@@ -44,9 +46,9 @@ export class MainComponent implements OnInit, OnDestroy {
       this.usersPosts = this.postQuery.getPosts();
     }
 
+    //mock add users
     this.interval = setInterval(() => {
       this.addPost();
-      console.log('add')
     }, 2000);
 
     this.postSubscription = this.postQuery.posts$.subscribe((value: PostModel[]) => {

@@ -1,13 +1,23 @@
 <div class="container">
     <app-snackbar class="snackbar" [notification]="notify"></app-snackbar>
-    <button class="button button-small filled-red" (click)="Logout()">
-        <span>Logout</span>
-    </button>
-    <button class="button button-small filled-blue add" (click)="addPost()">
-        <span>Aggiungi nuovo post</span>
-    </button>
+    <div class="header">
+        <div class="actions">
+            <button class="button button-small outline" (click)="Logout()">
+                <span>Logout</span>
+            </button>
+            <button class="button button-small filled-blue add" (click)="addPost()">
+                <span>Aggiungi nuovo post</span>
+            </button>
+        </div>
+
+        <div class="text-dark-sm info">
+            <div>Bentornato <span class="text-dark-m">{{ userInfo?.name }}!</span></div>
+            <div>posizione: <span class="text-dark-m">{{ userInfo?.position }}</span></div>
+            <div>post totali: <span class="text-dark-m">{{ userInfo?.postNumber }}</span></div>
+        </div>
+    </div>
     <div class="ranking-container">
-        <app-general-ranking [users]="users" [usersPost]="usersPosts"
+        <app-general-ranking [users]="users" [usersPost]="usersPosts" (userInfoState)="userInfo=$event"
             (showSnackbar)="showSnackbar($event)"></app-general-ranking>
     </div>
 </div>
