@@ -1,27 +1,17 @@
-# Exercise
+##GENERAL INFO
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
+Per autenticarsi basta inserire un qualunque indirizzo mail e password
+La schermata principale contiene:
 
-## Development server
+- Il pulsante di logout che inizializza tutto lo store interno
+- Un pulsante per aggiungere un nuovo post che mostra un form per l'inserimento di un post con titolo e corpo obbligatori
+- Una lista di utenti animata e ordinata per numero totale di post inseriti da ogni utente
+- Le informazioni relative all'utente random loggato in quel momento
+- Quando un utente entra nelle prime 3 posizioni viene visualizzata una notifica a schermo che scompare dopo 4 secondi
+- Quando un utente arriva in prima posizione la card principale si compie un movimento di shake  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Ho implementato una funzione che ogni 2 secondi inserisce un nuovo post di un utente random per simulare il backend e rendere più animato il mockup.
 
-## Code scaffolding
+L'applicazione è pensata per essere responsive.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Per il salvataggio dei dati ho utilizzato il management store di akita "https://opensource.salesforce.com/akita/"
