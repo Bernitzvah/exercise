@@ -18,6 +18,8 @@ export class MainComponent implements OnInit, OnDestroy {
   public users: AccountModel[] | undefined;
   public usersPosts: PostModel[] | undefined;
   public notify: NotificationModel | undefined;
+  public isNewPostVisible: boolean;
+
   @Input()
   public userInfo: UserInfoModel | undefined;
 
@@ -34,7 +36,9 @@ export class MainComponent implements OnInit, OnDestroy {
     private postStore: PostStore,
     private postQuery: PostQuery,
     private router: Router
-  ) { }
+  ) {
+    this.isNewPostVisible = false;
+  }
 
   ngOnInit(): void {
     this.users = this.accountQuery.getValue().users;
@@ -73,6 +77,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public addPost(): void {
+    this.isNewPostVisible = true;
     const random = this.getRandomUserId();
     const body = this.usersPosts ? this.usersPosts[random].body : '';
 

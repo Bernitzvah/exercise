@@ -43,6 +43,14 @@ export class CardComponent implements OnInit, OnDestroy, OnChanges {
         this.randomId = this.accountQuery.getFakeId();
         const totalPost = this.countUserPosts(this.randomId);
         this.users = this.users.map(x => ({ item: x, value: this.countUserPosts(x.id) })).sort((a, b) => a.value > b.value ? -1 : 1).map(x => x.item)
+
+        const position = this.users.findIndex(x => x.id == this.randomId) + 1;
+        const name = this.users.find(x => x.id == this.randomId)?.name;
+        const pre = this.countUserPosts(this.users[position-2].id);
+        const post = this.countUserPosts(this.users[position].id);
+        const model: UserInfoModel = { id: this.randomId, name: name ? name : '', position: position, postNumber: totalPost, preDetach: pre, postDetach: post };
+        this.userInfo.emit(model);
+
         const notify: NotificationModel = { subject: '', text: '', color: '' };
         if (this.firstPosition != this.users[0]) {
           this.firstPosition = this.users[0];
@@ -53,10 +61,6 @@ export class CardComponent implements OnInit, OnDestroy, OnChanges {
           if (this.items) {
             this.items.forEach(x => x.animateGo())
           }
-          const pos = this.users.findIndex(x => x.id == this.randomId) + 1;
-          const name = this.users.find(x => x.id == this.randomId)?.name;
-          const model: UserInfoModel = { id: this.randomId, name: name ? name : '', position: pos, postNumber: totalPost, preDetach: 0, postDetach: 0 };
-          this.userInfo.emit(model);
           return;
         }
         if (this.secondPosition != this.users[1]) {
@@ -68,10 +72,6 @@ export class CardComponent implements OnInit, OnDestroy, OnChanges {
           if (this.items) {
             this.items.forEach(x => x.animateGo())
           }
-          const pos = this.users.findIndex(x => x.id == this.randomId) + 1;
-          const name = this.users.find(x => x.id == this.randomId)?.name;
-          const model: UserInfoModel = { id: this.randomId, name: name ? name : '', position: pos, postNumber: totalPost, preDetach: 0, postDetach: 0 };
-          this.userInfo.emit(model);
           return;
         }
         if (this.thirdPosition != this.users[2]) {
@@ -83,16 +83,8 @@ export class CardComponent implements OnInit, OnDestroy, OnChanges {
           if (this.items) {
             this.items.forEach(x => x.animateGo())
           }
-          const pos = this.users.findIndex(x => x.id == this.randomId) + 1;
-          const name = this.users.find(x => x.id == this.randomId)?.name;
-          const model: UserInfoModel = { id: this.randomId, name: name ? name : '', position: pos, postNumber: totalPost, preDetach: 0, postDetach: 0 };
-          this.userInfo.emit(model);
           return;
         }
-        const pos = this.users.findIndex(x => x.id == this.randomId) + 1;
-        const name = this.users.find(x => x.id == this.randomId)?.name;
-        const model: UserInfoModel = { id: this.randomId, name: name ? name : '', position: pos, postNumber: totalPost, preDetach: 0, postDetach: 0 };
-        this.userInfo.emit(model);
         if (this.items) {
           this.items.forEach(x => x.animateGo())
         }

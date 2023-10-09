@@ -14,7 +14,14 @@
             <div>Bentornato <span class="text-dark-m">{{ userInfo?.name }}!</span></div>
             <div>posizione: <span class="text-dark-m">{{ userInfo?.position }}</span></div>
             <div>post totali: <span class="text-dark-m">{{ userInfo?.postNumber }}</span></div>
+            <div>Post per prossima posizione: <span class="text-dark-m">{{ userInfo?.preDetach }}</span></div>
+            <div>Post per posizione precedente: <span class="text-dark-m">{{ userInfo?.postDetach }}</span></div>
         </div>
+    </div>
+    <div *ngIf="isNewPostVisible" class="new-post">
+        <form class="form">
+            <input *ngIf="isNewPostVisible" class="field field-input-data" placeholder="scrivi per postare"/>
+        </form>
     </div>
     <div class="ranking-container">
         <app-general-ranking [users]="users" [usersPost]="usersPosts" (userInfoState)="userInfo=$event"
