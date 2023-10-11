@@ -1,9 +1,11 @@
 <ng-container *ngFor="let item of users let i = index">
     <div *animate class="card-container">
-        <div [ngClass]="{ 'shake': i==0, 'blink': i == 0 }">
-            <div *ngIf="i < 93" class="text-white badge" [ngClass]="{'first': i == 0, 'second': i == 1, 'third': i == 2}">{{i+1}}</div>
+        <div [ngClass]="{ 'shake': i == 0 }">
+
+        <div [ngClass]="{ 'blink': i == 0 }">
+            <div *ngIf="i < 3" class="text-white badge" [ngClass]="{'first': i == 0, 'second': i == 1, 'third': i == 2}">{{i+1}}</div>
             <div class="card"
-                [ngClass]="{ 'first': i == 0, 'second': i == 1, 'third': i == 2 }">
+                [ngClass]="{ 'first': i == 0, 'second': i == 1, 'third': i == 2}">
                 <div>
                     <div class="card-header">
                         <div class="container-name">
@@ -12,7 +14,6 @@
                         </div>
                         <div class="text-dark post">post totali: {{ countUserPosts(item.id) }}</div>
                     </div>
-
                     <div class="card-content">
                         <div class="text-dark-sm last-post">
                             {{ getLastPost(i+1) }}
@@ -20,6 +21,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </ng-container>
