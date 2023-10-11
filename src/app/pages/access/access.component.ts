@@ -40,13 +40,9 @@ export class AccessComponent implements OnInit {
 
   ngOnInit(): void {
     this.users = this.accountQuery.getValue().users;
-    if (!this.postQuery.getPosts()?.length || this.postQuery.getPosts()?.length <= 0) {
-      this.postService.getPostList().subscribe(res => {
-        this.usersPosts = res;
-      });
-    } else {
-      this.usersPosts = this.postQuery.getPosts();
-    }
+    this.postService.getPostList().subscribe(res => {
+      this.usersPosts = res;
+    });
     this.userService.getUsersList().subscribe((response: AccountModel[]) => {
       this.users = response;
       if (this.rankedUsers) {
