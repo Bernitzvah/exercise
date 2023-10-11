@@ -16,6 +16,7 @@
             <div>POST: <span class="text-dark-m">{{ userInfo?.postNumber }}</span></div>
             <div>POST PROSSIMA POSIZIONE: <span class="text-dark-m">{{ userInfo?.preDetach }}</span></div>
             <div>POST POSIZIONE PRECEDENTE: <span class="text-dark-m">{{ userInfo?.postDetach }}</span></div>
+            <div>POST TOTALI: <span class="text-dark-m">{{ usersPosts?.length }}</span></div>
         </div>
     </div>
     <div *ngIf="isNewPostVisible" class="new-post mover">
