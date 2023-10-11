@@ -34,7 +34,7 @@ export class SnackbarComponent implements OnChanges {
     if (this.notificationList.length > 0) {
       setTimeout(() => {
         this.removeElement();
-      }, 4000);
+      }, 3000);
     }
   }
 

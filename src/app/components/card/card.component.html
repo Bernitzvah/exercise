@@ -1,7 +1,6 @@
 <ng-container *ngFor="let item of users let i = index">
     <div *animate class="card-container">
         <div [ngClass]="{ 'shake': i == 0 }">
-
         <div [ngClass]="{ 'blink': i == 0 }">
             <div *ngIf="i < 3" class="text-white badge" [ngClass]="{'first': i == 0, 'second': i == 1, 'third': i == 2}">{{i+1}}</div>
             <div class="card"
